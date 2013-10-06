@@ -40,7 +40,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:text="@string/reset_instructions"
-        android:textColor="@color/white" />
+        android:textColor="@color/orange" />
 
     <Button
         android:id="@+id/tapButtonView"
@@ -52,6 +52,7 @@
         android:background="@drawable/round_button"
         android:text="@string/tap"
         android:textColor="@color/white"
-        android:textSize="80sp" />
+        android:textSize="80sp"
+        android:onClick="updateBpm" />
 
 </RelativeLayout>

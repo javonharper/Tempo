@@ -3,11 +3,12 @@ package com.javonharper.tempo;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
 
-public class TempoActivity extends Activity {
+public class TempoActivity extends FullScreenActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tempo);
     }
@@ -20,4 +21,7 @@ public class TempoActivity extends Activity {
         return true;
     }
     
+    public void updateBpm(View view) {
+    	System.out.println("Updating BPM...");
+    } 
 }
