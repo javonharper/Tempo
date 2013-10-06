@@ -17,43 +17,43 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="28dp"
         android:text="@string/reset_instructions"
         android:textColor="@color/white" />
 
-    <TextView
-        android:id="@+id/bpmLabelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bpmTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp"
-        android:text="@string/bpm"
-        android:textColor="@color/white"
-        android:textSize="30sp" />
-
     <Button
         android:id="@+id/tapButtonView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_above="@+id/instructionalLabelTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/round_button"
         android:onClick="updateBpm"
         android:text="@string/tap"
         android:textColor="@color/white"
-        android:textSize="80sp" />
+        android:textSize="90sp" />
 
     <TextView
         android:id="@+id/bpmTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tapButtonView"
+        android:layout_below="@+id/bpmLabelTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="27dp"
+        android:layout_marginTop="12dp"
         android:text="@string/test_bpm"
         android:textColor="@color/white"
-        android:textSize="60sp" />
+        android:textSize="70sp" />
+
+    <TextView
+        android:id="@+id/bpmLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/bpm"
+        android:textColor="@color/white"
+        android:textSize="40sp" />
 
 </RelativeLayout>

@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
-public class TempoActivity extends FullScreenActivity {
+public class TempoActivity extends Activity {
 	BpmCalculator bpmCalculator;
 	Timer timer;
 
