@@ -3,7 +3,7 @@
 
     <string name="app_name">Tempo</string>
     <string name="action_settings">Settings</string>
-	    <string name="BPM">BPM</string>
+	    <string name="bpm">BPM</string>
     <string name="test_bpm">105</string>
     <string name="reset_instructions">Wait 3 seconds to reset</string>
     <string name="tap">TAP</string>
