@@ -1,5 +1,7 @@
 package com.javonharper.tempo;
 
+import java.util.Timer;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -8,14 +10,32 @@ import android.widget.TextView;
 
 public class TempoActivity extends FullScreenActivity {
 	BpmCalculator bpmCalculator;
+	Timer timer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tempo);
+        
         bpmCalculator = new BpmCalculator();
+        
     }
-
+    
+    @Override
+    protected void onStart() {
+    	super.onStart();
+    	
+    	timer = new Timer();
+        startTimer();
+        initializeView();
+    }
+    
+    @Override
+    protected void onDestroy() {
+    	timer.cancel();
+    	bpmCalculator.clearTimes();
+    	super.onDestroy();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -24,11 +44,18 @@ public class TempoActivity extends FullScreenActivity {
         return true;
     }
     
-    public void updateBpm(View view) {
-    	System.out.println("Updating BPM...");
-    	
+    public void updateBpm(View view) { 	
     	bpmCalculator.recordTime();
-    	
+    	scheduleReset();
+    	updateView();
+    } 
+    
+    private void initializeView() {
+    	TextView bpmTextView = (TextView) findViewById(R.id.bpmTextView);
+    	bpmTextView.setText(getString(R.string.app_instructions));
+    }
+    
+    private void updateView() {    	
     	String displayValue;
     	
     	if (bpmCalculator.times.size() >= 2) {
@@ -40,6 +67,18 @@ public class TempoActivity extends FullScreenActivity {
 
     	TextView bpmTextView = (TextView) findViewById(R.id.bpmTextView);
     	bpmTextView.setText(displayValue);
-    	
-    } 
+    }
+    
+    private void scheduleReset() {
+    	stopTimer();
+    	startTimer();
+    }
+    
+    private void startTimer() {
+    	//timer.schedule(new BpmCalculatorResetTimer(bpmCalculator), BpmCalculatorResetTimer.RESET_DURATION);
+    }
+    
+    private void stopTimer() {
+    	//timer.cancel();
+    }
 }

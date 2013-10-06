@@ -20,6 +20,11 @@ public class BpmCalculator {
 		return calculateBpm(deltas);	
 	}
 	
+	public void clearTimes() {
+		System.out.println("resetting!");
+		times.clear();
+	}
+	
 	private ArrayList<Long> getDeltas() {
 		ArrayList<Long> deltas = new ArrayList<Long>();
 		
