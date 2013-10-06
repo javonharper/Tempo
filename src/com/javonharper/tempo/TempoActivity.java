@@ -24,9 +24,7 @@ public class TempoActivity extends FullScreenActivity {
     @Override
     protected void onStart() {
     	super.onStart();
-    	
-    	timer = new Timer();
-        startTimer();
+    	startTimer();
         initializeView();
     }
     
@@ -75,10 +73,13 @@ public class TempoActivity extends FullScreenActivity {
     }
     
     private void startTimer() {
-    	//timer.schedule(new BpmCalculatorResetTimer(bpmCalculator), BpmCalculatorResetTimer.RESET_DURATION);
+    	System.out.println("starting timer");
+    	timer = new Timer("reset-bpm-calculator", true);
+    	timer.schedule(new BpmCalculatorResetTimer(bpmCalculator), BpmCalculatorResetTimer.RESET_DURATION);
     }
     
     private void stopTimer() {
-    	//timer.cancel();
+    	System.out.println("stopping timer");
+    	timer.cancel();
     }
 }

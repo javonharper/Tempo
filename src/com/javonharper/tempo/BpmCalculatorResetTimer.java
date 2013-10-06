@@ -4,15 +4,16 @@ import java.util.TimerTask;
 
 public class BpmCalculatorResetTimer extends TimerTask {
 	
-	public static long RESET_DURATION = 30000;
+	public static long RESET_DURATION = 3000;
+	
+	BpmCalculator calculator;
 	
 	public BpmCalculatorResetTimer(BpmCalculator calculator) {
-		calculator.clearTimes();
+		this.calculator = calculator;
 	}
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-
+		calculator.clearTimes();
 	}
 }
