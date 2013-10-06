@@ -21,7 +21,6 @@ public class BpmCalculator {
 	}
 	
 	public void clearTimes() {
-		System.out.println("resetting!");
 		times.clear();
 	}
 	

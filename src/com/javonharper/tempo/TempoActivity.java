@@ -73,13 +73,11 @@ public class TempoActivity extends FullScreenActivity {
     }
     
     private void startTimer() {
-    	System.out.println("starting timer");
     	timer = new Timer("reset-bpm-calculator", true);
     	timer.schedule(new BpmCalculatorResetTimer(bpmCalculator), BpmCalculatorResetTimer.RESET_DURATION);
     }
     
     private void stopTimer() {
-    	System.out.println("stopping timer");
     	timer.cancel();
     }
 }
