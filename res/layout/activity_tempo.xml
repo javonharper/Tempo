@@ -12,27 +12,6 @@
     tools:context=".TempoActivity" >
 
     <TextView
-        android:id="@+id/bpmTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bpmLabelTextView"
-        android:layout_centerHorizontal="true"
-        android:text="@string/test_bpm"
-        android:textColor="@color/white"
-        android:textSize="60sp" />
-
-    <TextView
-        android:id="@+id/bpmLabelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-        android:text="@string/bpm"
-        android:textColor="@color/white"
-        android:textSize="30sp" />
-
-    <TextView
         android:id="@+id/instructionalLabelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,17 +21,39 @@
         android:text="@string/reset_instructions"
         android:textColor="@color/orange" />
 
+    <TextView
+        android:id="@+id/bpmLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bpmTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp"
+        android:text="@string/bpm"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
     <Button
         android:id="@+id/tapButtonView"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_below="@+id/bpmTextView"
+        android:layout_above="@+id/instructionalLabelTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/round_button"
+        android:onClick="updateBpm"
         android:text="@string/tap"
         android:textColor="@color/white"
-        android:textSize="80sp"
-        android:onClick="updateBpm" />
+        android:textSize="80sp" />
+
+    <TextView
+        android:id="@+id/bpmTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tapButtonView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:text="@string/test_bpm"
+        android:textColor="@color/white"
+        android:textSize="60sp" />
 
 </RelativeLayout>
