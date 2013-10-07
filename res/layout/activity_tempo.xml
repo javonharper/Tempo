@@ -12,29 +12,6 @@
     tools:context=".TempoActivity" >
 
     <TextView
-        android:id="@+id/instructionalLabelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:text="@string/reset_instructions"
-        android:textColor="@color/textColor" />
-
-    <Button
-        android:id="@+id/tapButtonView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_above="@+id/instructionalLabelTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/round_button"
-        android:onClick="updateBpm"
-        android:text="@string/tap"
-        android:textColor="@color/textColor"
-        android:textSize="90sp" />
-
-    <TextView
         android:id="@+id/bpmLabelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,5 +31,28 @@
         android:text="@string/initial_bpm_value"
         android:textColor="@color/textColor"
         android:textSize="70sp" />
+
+    <Button
+        android:id="@+id/tapButtonView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_above="@+id/instructionalLabelTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/round_button"
+        android:onClick="updateBpm"
+        android:text="@string/tap"
+        android:textColor="@color/textColor"
+        android:textSize="90sp" />
+
+    <TextView
+        android:id="@+id/instructionalLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:text="@string/reset_instructions"
+        android:textColor="@color/textColor" />
 
 </RelativeLayout>
