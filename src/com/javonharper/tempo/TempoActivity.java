@@ -3,7 +3,9 @@ package com.javonharper.tempo;
 import java.util.Timer;
 
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.app.Activity;
+import android.content.Context;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -43,6 +45,7 @@ public class TempoActivity extends Activity {
 	}
 
 	public void updateBpm(View view) {
+		vibrate();
 		bpmCalculator.recordTime();
 		scheduleReset();
 		updateView();
@@ -80,5 +83,10 @@ public class TempoActivity extends Activity {
 
 	private void stopTimer() {
 		timer.cancel();
+	}
+	
+	private void vibrate() {
+		Vibrator vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+		vibes.vibrate(50);
 	}
 }
