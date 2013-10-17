@@ -1,4 +1,4 @@
-lt application files
+# built application files
 *.apk
 *.ap_
 
@@ -27,4 +27,3 @@ proguard/
 *.ipr
 *.iws
 .idea/
-
