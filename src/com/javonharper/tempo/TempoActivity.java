@@ -2,12 +2,15 @@ package com.javonharper.tempo;
 
 import java.util.Timer;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.app.Activity;
 import android.content.Context;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.TextView;
 
 public class TempoActivity extends Activity {
@@ -44,16 +47,33 @@ public class TempoActivity extends Activity {
 		return true;
 	}
 
-	public void updateBpm(View view) {
+	private void initializeView() {
+		TextView bpmTextView = (TextView) findViewById(R.id.bpmTextView);
+		bpmTextView.setText(getString(R.string.initial_bpm_value));
+		setupTouchListener();
+	}
+
+	private void setupTouchListener() {
+		View tapButton = (View) findViewById(R.id.tapButtonView);
+		tapButton.setOnTouchListener(new OnTouchListener() {			
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					handleTouch();
+					return true;
+				}
+				return false;
+			}
+		});
+	}
+	
+	public void handleTouch() {
+		// Perhaps threading the feedback & calculation would make
+		//   this more responsive.
+		playSound();
 		vibrate();
 		bpmCalculator.recordTime();
 		scheduleReset();
 		updateView();
-	}
-
-	private void initializeView() {
-		TextView bpmTextView = (TextView) findViewById(R.id.bpmTextView);
-		bpmTextView.setText(getString(R.string.initial_bpm_value));
 	}
 
 	private void updateView() {
@@ -83,6 +103,11 @@ public class TempoActivity extends Activity {
 
 	private void stopTimer() {
 		timer.cancel();
+	}
+	
+	private void playSound() {
+		MediaPlayer player = MediaPlayer.create(getApplicationContext(), R.raw.woodblock);
+		player.start();
 	}
 	
 	private void vibrate() {
