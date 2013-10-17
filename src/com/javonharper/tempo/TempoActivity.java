@@ -16,6 +16,7 @@ import android.widget.TextView;
 public class TempoActivity extends Activity {
 	BpmCalculator bpmCalculator;
 	Timer timer;
+	Vibrator vibes;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class TempoActivity extends Activity {
 		setContentView(R.layout.activity_tempo);
 
 		bpmCalculator = new BpmCalculator();
-
+		vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	@Override
@@ -55,7 +56,7 @@ public class TempoActivity extends Activity {
 
 	private void setupTouchListener() {
 		View tapButton = (View) findViewById(R.id.tapButtonView);
-		tapButton.setOnTouchListener(new OnTouchListener() {			
+		tapButton.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					handleTouch();
@@ -65,11 +66,10 @@ public class TempoActivity extends Activity {
 			}
 		});
 	}
-	
+
 	public void handleTouch() {
 		// Perhaps threading the feedback & calculation would make
-		//   this more responsive.
-		playSound();
+		// this more responsive.
 		vibrate();
 		bpmCalculator.recordTime();
 		scheduleReset();
@@ -104,14 +104,8 @@ public class TempoActivity extends Activity {
 	private void stopTimer() {
 		timer.cancel();
 	}
-	
-	private void playSound() {
-		MediaPlayer player = MediaPlayer.create(getApplicationContext(), R.raw.woodblock);
-		player.start();
-	}
-	
+
 	private void vibrate() {
-		Vibrator vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		vibes.vibrate(50);
 	}
 }
