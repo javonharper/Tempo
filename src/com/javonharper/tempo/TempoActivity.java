@@ -2,7 +2,6 @@ package com.javonharper.tempo;
 
 import java.util.Timer;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.app.Activity;
