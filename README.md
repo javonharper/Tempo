@@ -1,4 +1,4 @@
 Tempo
 =====
 
-BPM Calculator
+Android BPM Calculator 
