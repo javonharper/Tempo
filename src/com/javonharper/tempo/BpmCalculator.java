@@ -5,14 +5,17 @@ import java.util.ArrayList;
 public class BpmCalculator {
 	private static final Long MILLISECONDS_IN_A_MINUTE = Long.valueOf(60000);
 	public ArrayList<Long> times;
+	private boolean isRecording;
 
 	public BpmCalculator() {
 		times = new ArrayList<Long>();
+		isRecording = false;
 	}
 
 	public void recordTime() {
 		long time = System.currentTimeMillis();
 		times.add(Long.valueOf(time));
+		isRecording = true;
 	}
 
 	public int getBpm() {
@@ -22,6 +25,7 @@ public class BpmCalculator {
 
 	public void clearTimes() {
 		times.clear();
+		isRecording = false;
 	}
 
 	private ArrayList<Long> getDeltas() {
@@ -45,5 +49,9 @@ public class BpmCalculator {
 		Long average = sum / deltas.size();
 
 		return (int) (MILLISECONDS_IN_A_MINUTE / average);
+	}
+
+	public boolean isRecording() {
+		return isRecording;
 	}
 }

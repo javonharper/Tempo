@@ -1,17 +1,21 @@
 package com.javonharper.tempo;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.TextView;
 
 public class TempoActivity extends Activity {
+	public static long RESET_DURATION = 2000;
 	BpmCalculator bpmCalculator;
 	Timer timer;
 	Vibrator vibes;
@@ -59,9 +63,26 @@ public class TempoActivity extends Activity {
 
 	public void handleTouch() {
 		vibrate();
+		saturateBackground();
 		bpmCalculator.recordTime();
 		restartResetTimer();
 		updateView();
+	}
+
+	private void saturateBackground() {
+		if (!bpmCalculator.isRecording()) {
+			View view = (View) findViewById(R.id.appView);
+			TransitionDrawable background = (TransitionDrawable) view
+					.getBackground();
+			background.startTransition((int) RESET_DURATION);
+		}
+	}
+	
+	private void resetBackground() {
+		View view = (View) findViewById(R.id.appView);
+		TransitionDrawable background = (TransitionDrawable) view
+				.getBackground();
+		background.reverseTransition((int) (RESET_DURATION/5));
 	}
 
 	private void updateView() {
@@ -85,12 +106,26 @@ public class TempoActivity extends Activity {
 
 	private void startResetTimer() {
 		timer = new Timer("reset-bpm-calculator", true);
-		timer.schedule(new BpmCalculatorResetTimer(bpmCalculator),
-				BpmCalculatorResetTimer.RESET_DURATION);
+		timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				bpmCalculator.clearTimes();
+				runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						resetBackground();
+					}
+				});
+			}
+		}, RESET_DURATION);
 	}
 
 	private void stopResetTimer() {
-		timer.cancel();
+		if (timer != null) {
+			timer.cancel();
+		}
 	}
 
 	private void vibrate() {
