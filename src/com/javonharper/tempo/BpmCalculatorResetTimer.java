@@ -4,7 +4,7 @@ import java.util.TimerTask;
 
 public class BpmCalculatorResetTimer extends TimerTask {
 
-	public static long RESET_DURATION = 3000;
+	public static long RESET_DURATION = 2000;
 
 	BpmCalculator calculator;
 
