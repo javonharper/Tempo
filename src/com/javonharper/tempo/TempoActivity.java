@@ -2,11 +2,10 @@ package com.javonharper.tempo;
 
 import java.util.Timer;
 
-import android.os.Bundle;
-import android.os.Vibrator;
 import android.app.Activity;
 import android.content.Context;
-import android.view.Menu;
+import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -29,8 +28,7 @@ public class TempoActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		startTimer();
-		initializeView();
+		initialize();
 	}
 
 	@Override
@@ -40,14 +38,7 @@ public class TempoActivity extends Activity {
 		super.onDestroy();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.tempo, menu);
-		return true;
-	}
-
-	private void initializeView() {
+	private void initialize() {
 		TextView bpmTextView = (TextView) findViewById(R.id.bpmTextView);
 		bpmTextView.setText(getString(R.string.initial_bpm_value));
 		setupTouchListener();
@@ -67,11 +58,9 @@ public class TempoActivity extends Activity {
 	}
 
 	public void handleTouch() {
-		// Perhaps threading the feedback & calculation would make
-		// this more responsive.
 		vibrate();
 		bpmCalculator.recordTime();
-		scheduleReset();
+		restartResetTimer();
 		updateView();
 	}
 
@@ -89,18 +78,18 @@ public class TempoActivity extends Activity {
 		bpmTextView.setText(displayValue);
 	}
 
-	private void scheduleReset() {
-		stopTimer();
-		startTimer();
+	private void restartResetTimer() {
+		stopResetTimer();
+		startResetTimer();
 	}
 
-	private void startTimer() {
+	private void startResetTimer() {
 		timer = new Timer("reset-bpm-calculator", true);
 		timer.schedule(new BpmCalculatorResetTimer(bpmCalculator),
 				BpmCalculatorResetTimer.RESET_DURATION);
 	}
 
-	private void stopTimer() {
+	private void stopResetTimer() {
 		timer.cancel();
 	}
 
