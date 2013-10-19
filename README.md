@@ -11,5 +11,5 @@ Features
 * Simple and intuitive controls.
 * Visual and tactile feedback.
 * Two-second reset timer.
-* 
-[Product Page](play.google.com/store/apps/details?id=com.javonharper.tempo)
+
+[View the Product Page](play.google.com/store/apps/details?id=com.javonharper.tempo)
