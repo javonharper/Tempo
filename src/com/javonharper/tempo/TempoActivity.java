@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -44,7 +45,24 @@ public class TempoActivity extends Activity {
 	private void initialize() {
 		TextView bpmTextView = (TextView) findViewById(R.id.bpmTextView);
 		bpmTextView.setText(getString(R.string.initial_bpm_value));
+		initializeFonts();
 		setupTouchListener();
+	}
+	
+	private void initializeFonts() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "SourceSansPro-Light.ttf");  
+
+		TextView instructionalTextView = (TextView) findViewById(R.id.instructionalLabelTextView); 
+		instructionalTextView.setTypeface(font);
+		
+		TextView bpmLabelTextView = (TextView) findViewById(R.id.bpmLabelTextView); 
+		bpmLabelTextView.setTypeface(font);
+		
+		TextView bpmTextView = (TextView) findViewById(R.id.bpmTextView); 
+		bpmTextView.setTypeface(font);
+		
+		TextView tapButtonView = (TextView) findViewById(R.id.tapButtonView); 
+		tapButtonView.setTypeface(font);
 	}
 
 	private void setupTouchListener() {
