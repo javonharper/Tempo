@@ -7,6 +7,6 @@
     <string name="initial_bpm_value">0</string>
     <string name="tap_again">Tap Again</string>
     <string name="tap">TAP</string>
-    <string name="reset_instructions">Wait 2 seconds to reset.</string>
+    <string name="reset_instructions">Wait two seconds to reset.</string>
 
 </resources>
