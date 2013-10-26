@@ -3,7 +3,7 @@ package com.javonharper.tempo;
 import java.util.ArrayList;
 
 public class BpmCalculator {
-	private static final Long MILLISECONDS_IN_A_MINUTE = Long.valueOf(60000);
+	private static final Long MILLISECONDS_IN_A_MINUTE = 60000L;
 	public ArrayList<Long> times;
 	private boolean isRecording;
 
@@ -13,8 +13,8 @@ public class BpmCalculator {
 	}
 
 	public void recordTime() {
-		long time = System.currentTimeMillis();
-		times.add(Long.valueOf(time));
+		Long time = System.currentTimeMillis();
+		times.add(time);
 		isRecording = true;
 	}
 
@@ -40,7 +40,7 @@ public class BpmCalculator {
 	}
 
 	private int calculateBpm(ArrayList<Long> deltas) {
-		Long sum = Long.valueOf(0);
+		Long sum = 0L;
 
 		for (Long delta : deltas) {
 			sum = sum + delta;
