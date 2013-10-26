@@ -37,7 +37,10 @@ public class TempoActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		timer.cancel();
+		if (timer != null) {
+			timer.cancel();
+		}
+
 		bpmCalculator.clearTimes();
 		super.onDestroy();
 	}
@@ -48,20 +51,21 @@ public class TempoActivity extends Activity {
 		initializeFonts();
 		setupTouchListener();
 	}
-	
-	private void initializeFonts() {
-		Typeface font = Typeface.createFromAsset(getAssets(), "SourceSansPro-Light.ttf");  
 
-		TextView instructionalTextView = (TextView) findViewById(R.id.instructionalLabelTextView); 
+	private void initializeFonts() {
+		Typeface font = Typeface.createFromAsset(getAssets(),
+				"SourceSansPro-Light.ttf");
+
+		TextView instructionalTextView = (TextView) findViewById(R.id.instructionalLabelTextView);
 		instructionalTextView.setTypeface(font);
-		
-		TextView bpmLabelTextView = (TextView) findViewById(R.id.bpmLabelTextView); 
+
+		TextView bpmLabelTextView = (TextView) findViewById(R.id.bpmLabelTextView);
 		bpmLabelTextView.setTypeface(font);
-		
-		TextView bpmTextView = (TextView) findViewById(R.id.bpmTextView); 
+
+		TextView bpmTextView = (TextView) findViewById(R.id.bpmTextView);
 		bpmTextView.setTypeface(font);
-		
-		TextView tapButtonView = (TextView) findViewById(R.id.tapButtonView); 
+
+		TextView tapButtonView = (TextView) findViewById(R.id.tapButtonView);
 		tapButtonView.setTypeface(font);
 	}
 
@@ -94,12 +98,12 @@ public class TempoActivity extends Activity {
 			background.startTransition((int) RESET_DURATION);
 		}
 	}
-	
+
 	private void resetBackground() {
 		View view = (View) findViewById(R.id.appView);
 		TransitionDrawable background = (TransitionDrawable) view
 				.getBackground();
-		background.reverseTransition((int) (RESET_DURATION/5));
+		background.reverseTransition((int) (RESET_DURATION / 5));
 	}
 
 	private void updateView() {
@@ -124,12 +128,12 @@ public class TempoActivity extends Activity {
 	private void startResetTimer() {
 		timer = new Timer("reset-bpm-calculator", true);
 		timer.schedule(new TimerTask() {
-			
+
 			@Override
 			public void run() {
 				bpmCalculator.clearTimes();
 				runOnUiThread(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						resetBackground();
